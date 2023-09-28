@@ -74,6 +74,7 @@ const propertyInsertion = async (req, res) => {
     noofBeds,
     noofBathroom,
     area,
+    availableFrom,
   } = req.body;
 
   try {
@@ -90,6 +91,7 @@ const propertyInsertion = async (req, res) => {
       noofBeds,
       noofBathroom,
       area,
+      availableFrom: new Date(availableFrom),
     });
     await newProperty.save();
 
@@ -111,17 +113,14 @@ const propertyUpdation = async (req, res) => {
     noofBeds,
     noofBathroom,
     area,
+    availableFrom,
   } = req.body;
 
   try {
     const property = await Property.findById(propertyId);
-
-    // If the property doesn't exist, return a 404 Not Found response
     if (!property) {
       return res.status(404).json({ message: "Property not found" });
     }
-
-    // Update the property fields with the new values
     property.imageUrl = imageUrl;
     property.propertyName = propertyName;
     property.address = address;
@@ -129,8 +128,8 @@ const propertyUpdation = async (req, res) => {
     property.noofBeds = noofBeds;
     property.noofBathroom = noofBathroom;
     property.area = area;
+    property.availableFrom = availableFrom;
 
-    // Save the updated property document
     await property.save();
 
     return res.status(200).json({ message: "Property updated successfully" });
@@ -160,6 +159,7 @@ const propertyDeletion = async (req, res) => {
 const getAllPropertyReports = async (req, res) => {
   try {
     const properties = await Property.find();
+    console.log(properties);
     res.status(200).json(properties);
   } catch (error) {
     console.error(error);

@@ -18,10 +18,13 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   rent: {
-    type: String,
+    type: Number,
     required: true,
   },
-
+  availableFrom: {
+    type: Date,
+    required: true,
+  },
   noofBeds: {
     type: Number,
     required: true,
@@ -31,7 +34,7 @@ const propertySchema = new mongoose.Schema({
     required: true,
   },
   area: {
-    type: String,
+    type: Number,
     required: true,
   },
 });
