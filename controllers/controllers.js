@@ -3,10 +3,6 @@ const Property = require("../models/propertySchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const gethello = async (req, res) => {
-  res.send("Hello, World!");
-};
-
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -183,7 +179,6 @@ const getUserPropertyDetails = async (req, res) => {
 };
 
 module.exports = {
-  gethello,
   login,
   signup,
   propertyInsertion,

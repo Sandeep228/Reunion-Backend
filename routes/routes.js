@@ -3,7 +3,6 @@ const router = express.Router();
 const controllers = require("../controllers/controllers");
 const isAuthenticated = require("../middleware/isAuth");
 
-router.get("/", controllers.gethello);
 router.post("/login", controllers.login);
 router.post("/signup", controllers.signup);
 router.post("/property", isAuthenticated, controllers.propertyInsertion);
